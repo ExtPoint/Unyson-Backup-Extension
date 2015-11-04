@@ -18,7 +18,7 @@ $demo_page_link = $backup->get_config('demo_page_link');
 	<h3><?php _e('Make you theme look exactly like our demo', 'fw') ?></h3>
 
 	<p><?php echo sprintf('By importing the demo content, your theme will look like the one
-		you see on %s our demo %s.
+		you see on %sour demo%s.
 		This install is not necessary but will help you get the core pages,
 		categories and meta setup correctly.
 		This action will also let you understand how the theme works by
