@@ -15,15 +15,15 @@ $demo_page_link = $backup->get_config('demo_page_link');
 
 	<h2><?php strtr(__('{theme_name} WordPress Theme', 'fw'), array('{theme_name}' => esc_html($theme_name))) ?></h2>
 
-	<h3><?php _e('Make you theme look exactly like our demo', 'fw') ?></h3>
+	<h3><?php _e('Make your theme look exactly like our demo', 'fw') ?></h3>
 
 	<p><?php echo sprintf('By importing the demo content, your theme will look like the one
-		you see on %sour demo%s.
+		you see on %s our demo %s.
 		This install is not necessary but will help you get the core pages,
 		categories and meta setup correctly.
-		This action will also let you understand how the theme works by
-		allowing you to modify a content that is already there rather than
-		creating it from scratch.', '<a href="' . esc_attr($demo_page_link). '">', '</a>' ) ?></p>
+		This action will also let you understand how the theme works by allowing you to
+		modify content that is already there rather than creating it
+		from scratch.', '<a href="' . esc_attr($demo_page_link). '">', '</a>' ) ?></p>
 	<?php if ( class_exists( 'ZipArchive' ) ) : ?>
 		<div class="error">
 			<p>

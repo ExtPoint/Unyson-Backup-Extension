@@ -780,7 +780,7 @@ class icit_srdb {
 	 * @return string
 	 */
 	public function preg_fix_serialised_count( $matches ) {
-		$length = mb_strlen( $matches[ 2 ] );
+		$length = function_exists('mb_strlen') ? mb_strlen( $matches[ 2 ] ) : strlen( $matches[ 2 ] );
 		if ( $length !== intval( $matches[ 1 ] ) )
 			return "s:{$length}:\"{$matches[2]}\";";
 		return $matches[ 0 ];
@@ -1144,7 +1144,7 @@ class icit_srdb {
 			$replacements = array_pad( $replacements, count( $searches ), '' );
 
 			foreach ( $searches as $key => $search ) {
-				$parts = mb_split( preg_quote( $search ), $subject );
+				$parts = function_exists('mb_split') ? mb_split( preg_quote( $search ), $subject ) : preg_split( "#" . preg_quote( $search ) . "#", $subject );
 				$count += count( $parts ) - 1;
 				$subject = implode( $replacements[ $key ], $parts );
 			}

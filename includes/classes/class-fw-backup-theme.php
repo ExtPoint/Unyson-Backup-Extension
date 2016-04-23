@@ -4,6 +4,10 @@ class FW_Backup_Theme
 {
 	public function __construct()
 	{
+		if (strrpos($_SERVER['REQUEST_URI'], '/themes.php?nocycle&activated=true')) {
+			$this->_admin_action_after_switch_theme();
+		}
+
 		if (is_admin()) {
 			$this->add_admin_actions();
 		}

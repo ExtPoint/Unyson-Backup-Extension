@@ -22,6 +22,9 @@ class FW_Backup_Process_Auto_Install
 		$restore = new FW_Backup_Process_Restore();
 		$restore->request_filesystem_credentials();
 
+		// Increase time limit. Run, until user cancelled
+		set_time_limit(0);
+
 		try {
 			$fs->check_permissions();
 

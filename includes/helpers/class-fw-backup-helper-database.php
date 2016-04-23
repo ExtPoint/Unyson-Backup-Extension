@@ -187,7 +187,7 @@ class FW_Backup_Helper_Database
 
 	public function foreach_statement($fp, $callback, $read_size = 102400)
 	{
-		$delimiter = $this->close_mysql_statement('');
+		$delimiter = rtrim($this->close_mysql_statement(''));
 		$buf = '';
 
 		while (!feof($fp)) {
@@ -376,7 +376,16 @@ class FW_Backup_Helper_Database
 
 		// Fix database
 		if ($fix_foreign_database) {
+
+			$uploadDir = wp_upload_dir();
+			$uploadOld = fw_get_url_without_scheme( site_url() . '/wp-content/uploads/' );
+			$uploadNew = fw_get_url_without_scheme( $uploadDir['baseurl'] . '/' );
+
 			$helper->fix_foreign_database( array(
+				$uploadOld                                                                 => $uploadNew,
+				str_replace( '/', '\/', $uploadOld )                                       => str_replace( '/', '\/', $uploadNew ),
+				str_replace( '/', '\\\/', $uploadOld )                                     => str_replace( '/', '\\\/', $uploadNew ),
+				str_replace( '/', '\\\\/', $uploadOld )                                    => str_replace( '/', '\\\\/', $uploadNew ),
 				site_url()                                                                 => $before['siteurl'],
 				site_url() . '/'                                                           => $before['siteurl'] . '/',
 				fw_get_url_without_scheme( site_url() . '/' )                              => fw_get_url_without_scheme( $before['siteurl'] . '/' ),
